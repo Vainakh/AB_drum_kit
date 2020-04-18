@@ -7,6 +7,7 @@ let buttons = document.querySelectorAll(".drum");
       let buttonInnerHTML = this.innerHTML;
 
       makeSound(buttonInnerHTML);
+      buttonAnimation(buttonInnerHTML);
   });
 }
 
@@ -14,6 +15,7 @@ let buttons = document.querySelectorAll(".drum");
 //detecting keyboard press
 document.addEventListener("keypress", function(event) {
   makeSound(event.key);
+  buttonAnimation(event.key);
 });
 
 
@@ -57,6 +59,15 @@ function makeSound(key){
     
     default: console.log(buttonInnerHTML);
   }
+}
+
+function buttonAnimation(currentKey) {
+  let activeButton = document.querySelector("." + currentKey)
+  activeButton.classList.add("pressed");
+
+  setTimeout(function() {
+    activeButton.classList.remove("pressed");
+  }, 100);
 }
 
 
